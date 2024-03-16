@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // 指定输出的JavaScript目标版本
+    "module": "esnext", // 指定模块系统，这里选择的是ES模块（ESM）。
+    "declaration": true, // 启用生成声明文件
+    "lib": ["es2021", "dom"], // 指定要包含的类型声明库。
+    "outDir": "dist", // 设置输出目录，编译后的JavaScript文件会被放在这个目录下。
+    "esModuleInterop": true, // 允许CommonJS模块与ES模块之间更好的互操作性，使import语句能更好地配合默认导出。
+    "sourceMap": true, // 生成源码映射文件，方便调试时定位原始TypeScript源代码。
+    "baseUrl": "./src", // 设置模块解析的基本目录，对于路径映射有用。
+    "strictNullChecks": true // 开启ts可选链提示
+  },
+  "include": ["src"], // 包含哪些文件或目录进行编译，这里是编译src目录下的所有TypeScript文件。
+  "exclude": ["node_modules", "**/*.test.ts"] // 排除不参与编译的文件或目录，这里是排除node_modules目录以及所有.test.ts结尾的测试文件。
+}
