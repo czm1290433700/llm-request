@@ -12,5 +12,5 @@
     "moduleResolution": "Node" // 模块解析策略。"node"适用于Node.js环境，它遵循Node.js的模块解析规则
   },
   "include": ["src"], // 包含哪些文件或目录进行编译，这里是编译src目录下的所有TypeScript文件。
-  "exclude": ["node_modules", "**/*.test.ts"] // 排除不参与编译的文件或目录，这里是排除node_modules目录以及所有.test.ts结尾的测试文件。
+  "exclude": ["node_modules", "**/*.test.ts", "dist"] // 排除不参与编译的文件或目录，这里是排除node_modules目录以及所有.test.ts结尾的测试文件。
 }

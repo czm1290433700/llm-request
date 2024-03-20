@@ -1,21 +1,25 @@
 import axios from "axios";
-import { EnvEnum } from "utils/request";
+import { EnvEnum } from "../../utils/request";
+import { ReadStream } from "fs";
+import FormData from "form-data";
 
 export interface IOpenAISpeechProps {
-  model: "tts" | "tts-1-hd";
+  model: "tts-1" | "tts-1-hd";
   input: string;
   voice: "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
   response_format?: "mp3" | "opus" | "aac" | "flac" | "wav" | "pcm";
   speed?: number;
 }
 
-export interface IOpenAITransitionProps {
-  file: File;
-  model: "whisper-1";
-  prompt?: string;
-  response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
-  temperature?: number;
-}
+export type IOpenAITransitionProps =
+  | {
+      file: ReadStream | File;
+      model: "whisper-1";
+      prompt?: string;
+      response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
+      temperature?: number;
+    }
+  | FormData;
 
 export type IOpenAISpeechResponse<T> = T extends EnvEnum.node
   ? Buffer
@@ -84,7 +88,6 @@ class OpenAIAudio {
         url: this.transitionUrl,
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${api_key}`,
         },
         data,

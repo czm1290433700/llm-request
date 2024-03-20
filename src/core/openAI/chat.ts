@@ -1,7 +1,7 @@
 import axios from "axios";
 import { cloneDeep } from "lodash";
 import { Readable } from "stream";
-import { EnvEnum } from "utils/request";
+import { EnvEnum } from "../../utils/request";
 
 export interface IOpenAIChatProps {
   messages: {
