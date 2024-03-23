@@ -24,7 +24,7 @@ export interface IOpenAIChatResponse {
 export type IOpenAIStreamChatResponse<T> = T extends EnvEnum.node
   ? Readable
   : T extends EnvEnum.web
-  ? ReadableStreamDefaultReader<Uint8Array>
+  ? ReadableStream<Uint8Array>
   : undefined;
 
 class OpenAIChat {
@@ -93,7 +93,7 @@ class OpenAIChat {
           },
           body: JSON.stringify(data),
         });
-        return response.body?.getReader() as IOpenAIStreamChatResponse<T>;
+        return response.body as IOpenAIStreamChatResponse<T>;
       default:
         break;
     }
@@ -144,8 +144,10 @@ class OpenAIChat {
         });
         break;
       case EnvEnum.web:
-        const reader = await this.streamChat<EnvEnum.web>(data, api_key, env);
-        if (reader) {
+        const reader = (
+          await this.streamChat<EnvEnum.web>(data, api_key, env)
+        )?.getReader();
+        const resolveData = async (reader) => {
           const { done, value } = await reader.read();
 
           if (done) {
@@ -167,15 +169,18 @@ class OpenAIChat {
             })
             .filter((data) => data);
           chunks.forEach((data) => {
-            const token = data.choices[0].delta.content;
+            const token = data.choices?.[0].delta.content;
 
             if (token !== undefined) {
-              debugger;
               // 通过 fn 向外传递流的处理结果
               fn(token);
             }
           });
-        }
+
+          return resolveData(reader);
+        };
+        await resolveData(reader);
+        reader?.releaseLock();
         break;
       default:
         break;
