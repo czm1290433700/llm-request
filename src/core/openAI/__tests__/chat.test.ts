@@ -15,8 +15,8 @@ describe("OpenAIChat", () => {
   describe("chat", () => {
     test("chat should make a POST request and return an IOpenAIChatResponse", async () => {
       const mockResponse = {
-        choice: [
-          { messages: { content: "mock answer" }, finish_reason: "finished" },
+        choices: [
+          { message: { content: "mock answer" }, finish_reason: "finished" },
         ],
       };
 

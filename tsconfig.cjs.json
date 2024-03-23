@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "esnext", // 指定输出的JavaScript目标版本
-    "module": "esnext", // 指定模块系统，这里选择的是ES模块（ESM）。
+    "target": "ES5", // 指定输出的JavaScript目标版本
+    "module": "CommonJS", // 指定模块系统，这里选择的是CommonJS。
     "declaration": true, // 启用生成声明文件
+    "declarationDir": "./dist/types", // 类型声明文件的输出目录
     "lib": ["es2021", "dom"], // 指定要包含的类型声明库。
-    "outDir": "dist", // 设置输出目录，编译后的JavaScript文件会被放在这个目录下。
+    "outDir": "dist/cjs", // 设置输出目录，编译后的JavaScript文件会被放在这个目录下。
     "esModuleInterop": true, // 允许CommonJS模块与ES模块之间更好的互操作性，使import语句能更好地配合默认导出。
     "sourceMap": true, // 生成源码映射文件，方便调试时定位原始TypeScript源代码。
     "baseUrl": "./src", // 设置模块解析的基本目录，对于路径映射有用。

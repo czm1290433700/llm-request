@@ -1,9 +1,9 @@
 import OpenAIAudio, {
   IOpenAISpeechProps,
   IOpenAITransitionProps,
-} from "core/openAI/audio";
-import OpenAIChat, { IOpenAIChatProps } from "core/openAI/chat";
-import BaseRequest from "utils/request";
+} from "./core/openAI/audio";
+import OpenAIChat, { IOpenAIChatProps } from "./core/openAI/chat";
+import BaseRequest from "./utils/request";
 
 export enum AudioEnum {
   Speech = "1",

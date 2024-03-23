@@ -1,6 +1,6 @@
 import axios from "axios";
-import FormData from "form-data";
-import fs from "fs";
+import * as FormData from "form-data";
+import * as fs from "fs";
 import { EnvEnum } from "../../../utils/request";
 import OpenAIAudio, {
   IOpenAISpeechProps,
@@ -114,7 +114,7 @@ describe("OpenAIAudio", () => {
         MOCK_API_KEY
       );
 
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(expectedResult.text);
       expect(axios.request).toHaveBeenCalledWith(
         expect.objectContaining({
           url: "https://api.openai.com/v1/audio/translations",
@@ -143,7 +143,7 @@ describe("OpenAIAudio", () => {
         MOCK_API_KEY
       );
 
-      expect(result).toEqual(expectedResult);
+      expect(result).toEqual(expectedResult.text);
       expect(axios.request).toHaveBeenCalledWith(
         expect.objectContaining({
           url: "https://api.openai.com/v1/audio/translations",

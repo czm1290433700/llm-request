@@ -54,10 +54,9 @@ class OpenAIChat {
       },
       data: chatData,
     });
-
     return {
-      answer: res.data?.choice?.[0]?.messages?.content || "",
-      finish_reason: res.data?.choice?.[0]?.finish_reason,
+      answer: res.data?.choices?.[0]?.message?.content || "",
+      finish_reason: res.data?.choices?.[0]?.finish_reason,
     };
   }
 

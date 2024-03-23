@@ -92,7 +92,7 @@ class OpenAIAudio {
         },
         data,
       })
-    ).data;
+    ).data.text;
   }
 }
 

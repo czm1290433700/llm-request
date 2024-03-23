@@ -2,10 +2,11 @@
   "name": "llm-request",
   "version": "1.0.0",
   "description": "面向大语言模型的web和nodejs端请求库",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -21,8 +22,8 @@
   "homepage": "https://github.com/czm1290433700/llm-request#readme",
   "dependencies": {
     "axios": "^1.6.8",
-    "lodash": "^4.17.21",
-    "form-data": "^4.0.0"
+    "form-data": "^4.0.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
