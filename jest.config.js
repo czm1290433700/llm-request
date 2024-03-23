@@ -11,4 +11,5 @@ module.exports = {
   },
   // 模块文件的扩展名
   moduleFileExtensions: ["js", "ts"],
+  modulePathIgnorePatterns: ["<rootDir>/src/demos/"],
 };

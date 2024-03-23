@@ -85,16 +85,15 @@ class OpenAIChat {
           })
         ).data;
       case EnvEnum.web:
-        const response = await axios.request({
-          url: this.chatApiUrl,
+        const response = await fetch(this.chatApiUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${api_key}`,
           },
-          data,
+          body: JSON.stringify(data),
         });
-        return response.data?.getReader();
+        return response.body?.getReader() as IOpenAIStreamChatResponse<T>;
       default:
         break;
     }
@@ -171,6 +170,7 @@ class OpenAIChat {
             const token = data.choices[0].delta.content;
 
             if (token !== undefined) {
+              debugger;
               // 通过 fn 向外传递流的处理结果
               fn(token);
             }
